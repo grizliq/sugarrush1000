@@ -33,7 +33,7 @@
   <meta name="twitter:description" content="RTP 96.53%, ×25 000, кластеры 7×7, споты-множители до ×1024, покупка бонуса. 18+." />
   <meta name="twitter:image" content="https://sugarrush1000.moscow/assets/sr-hero.jpg" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
 
   <script type="application/ld+json">
   {
@@ -137,7 +137,7 @@
         <p class="lead"><strong>Sugar Rush 1000</strong> (Шугар Раш 1000) — сладкое продолжение культового Sugar Rush с полем 7×7 и кластерными выплатами. RTP 96.53%, высокая волатильность, максимум ×25 000, споты-множители до ×1024 и покупка бонуса. Ниже — обзор, демо и где играть на деньги.</p>
         <div class="hero__cta">
           <a class="btn" href="https://wingame555.xyz/2rRiKx" target="_blank" rel="sponsored noopener">Играть на деньги</a>
-          <a class="btn btn--ghost" href="#demo">Играть демо</a>
+          <button class="btn btn--ghost" type="button" data-demo="vs20sugarrushx">Играть демо</button>
         </div>
         <ul class="hero__facts">
           <li><b>96.53%</b><span>RTP</span></li>
@@ -255,7 +255,10 @@
     <section class="sec sec--cta" id="demo">
       <h2>Sugar Rush 1000 demo — играть в демо бесплатно</h2>
       <p>Запустите <strong>Sugar Rush 1000 demo</strong> — демо-версию на виртуальные монеты — без депозита и регистрации. В демо доступны кластеры, каскады, споты-множители и покупка бонуса, чтобы оценить механику и волатильность перед игрой в рублях. Выигрыши в демо не выводятся.</p>
-      <a class="btn" href="https://wingame555.xyz/2rRiKx" target="_blank" rel="sponsored noopener">Играть демо бесплатно</a>
+      <div class="demo__cta">
+        <button class="btn btn--lg" type="button" data-demo="vs20sugarrushx">Запустить Sugar Rush 1000 demo</button>
+        <button class="btn btn--ghost btn--lg" type="button" data-demo="vs20sugarrush">Sugar Rush demo</button>
+      </div>
     </section>
 
     <!-- FAQ -->
@@ -285,6 +288,80 @@
     <p class="ftr__copy">© 2026 Обзор слота Sugar Rush 1000 (Шугар Раш 1000), Pragmatic Play. Материалы носят информационный характер.</p>
   </footer>
 
+  <!-- Демо-окно -->
+  <div class="dw" id="dw" hidden>
+    <div class="dw__win" role="dialog" aria-modal="true" aria-label="Sugar Rush 1000 demo">
+      <div class="dw__bar" id="dwBar">
+        <div class="dw__title"><i class="dw__dot"></i><span id="dwName">Sugar Rush 1000</span><span>· демо · Pragmatic Play</span></div>
+        <div class="dw__tabs">
+          <button class="dw__tab is-on" type="button" data-sym="vs20sugarrushx">Sugar Rush 1000</button>
+          <button class="dw__tab" type="button" data-sym="vs20sugarrush">Sugar Rush</button>
+        </div>
+        <div class="dw__acts">
+          <button class="dw__ib" id="dwMin" type="button" aria-label="Свернуть" title="Свернуть"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+          <button class="dw__ib" id="dwFull" type="button" aria-label="На весь экран" title="На весь экран"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+          <button class="dw__ib" id="dwClose" type="button" aria-label="Закрыть" title="Закрыть"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+      </div>
+      <div class="dw__body" id="dwBody">
+        <div class="dw__load" id="dwLoad">
+          <div class="dw__spin"></div>
+          <div class="dw__wait">Загружаем демо…</div>
+          <div class="dw__fb">
+            <h3>Демо-сервер сейчас не отвечает</h3>
+            <p>Откройте слот в казино — там есть и демо-режим, и игра в рублях.</p>
+            <a class="btn" href="https://wingame555.xyz/2rRiKx" target="_blank" rel="sponsored noopener">Открыть Sugar Rush 1000</a>
+          </div>
+        </div>
+      </div>
+      <div class="dw__foot">
+        <span><b>Демо-баланс и ставка сохраняются</b>, пока окно свёрнуто</span>
+        <span>Виртуальные монеты · без регистрации · 18+</span>
+        <a class="btn btn--sm" href="https://wingame555.xyz/2rRiKx" target="_blank" rel="sponsored noopener">Играть в рублях</a>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var dw=document.getElementById('dw'); if(!dw) return;
+    var body=document.getElementById('dwBody'), load=document.getElementById('dwLoad'), name=document.getElementById('dwName'),
+        tabs=dw.querySelectorAll('.dw__tab'),
+        games={vs20sugarrushx:'Sugar Rush 1000',vs20sugarrush:'Sugar Rush'},
+        frames={}, cur=null, timer=null;
+    function url(sym){ return 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol='+sym+'&websiteUrl=https%3A%2F%2Fdemogamesfree.pragmaticplay.net&jurisdiction=99&lobby_url=https%3A%2F%2Fsugarrush1000.moscow%2F&lang=ru&cur=RUB'; }
+    function show(sym){
+      if(!games[sym]) sym='vs20sugarrushx';
+      cur=sym; name.textContent=games[sym];
+      tabs.forEach(function(t){ t.classList.toggle('is-on', t.getAttribute('data-sym')===sym); });
+      Object.keys(frames).forEach(function(k){ frames[k].hidden = (k!==sym); });
+      clearTimeout(timer);
+      if(frames[sym]){ load.classList.add('is-off'); return; }
+      load.classList.remove('is-off','is-fb');
+      var f=document.createElement('iframe');
+      f.title=games[sym]+' demo'; f.allow='autoplay; fullscreen'; f.setAttribute('allowfullscreen','');
+      f.addEventListener('load', function(){ if(cur===sym){ load.classList.add('is-off'); clearTimeout(timer); } });
+      f.src=url(sym); body.appendChild(f); frames[sym]=f;
+      timer=setTimeout(function(){ if(cur===sym && !load.classList.contains('is-off')) load.classList.add('is-fb'); }, 12000);
+    }
+    function lock(on){ document.body.style.overflow = on ? 'hidden' : ''; }
+    function open(sym){ dw.hidden=false; dw.classList.remove('is-min'); lock(true); show(sym||cur||'vs20sugarrushx'); }
+    function min(){ dw.classList.add('is-min'); dw.classList.remove('is-full'); lock(false); }
+    function restore(){ dw.classList.remove('is-min'); lock(true); }
+    function close(){ dw.hidden=true; dw.classList.remove('is-min','is-full'); lock(false);
+      Object.keys(frames).forEach(function(k){ frames[k].remove(); }); frames={}; cur=null; load.classList.remove('is-off','is-fb'); }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-demo]'), function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); open(this.getAttribute('data-demo')); });
+    });
+    tabs.forEach(function(t){ t.addEventListener('click', function(e){ e.stopPropagation(); show(this.getAttribute('data-sym')); }); });
+    document.getElementById('dwMin').addEventListener('click', function(e){ e.stopPropagation(); min(); });
+    document.getElementById('dwFull').addEventListener('click', function(e){ e.stopPropagation(); dw.classList.toggle('is-full'); });
+    document.getElementById('dwClose').addEventListener('click', function(e){ e.stopPropagation(); close(); });
+    document.getElementById('dwBar').addEventListener('click', function(){ if(dw.classList.contains('is-min')) restore(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !dw.hidden && !dw.classList.contains('is-min')) min(); });
+    window.__dwOpen=function(){ return !dw.hidden && !dw.classList.contains('is-min'); };
+  })();
+  </script>
+
   <!-- Промо-уведомление: фриспины -->
   <div class="promo" id="promo" hidden>
     <div class="promo__card" role="dialog" aria-modal="true" aria-label="Бонус — фриспины">
@@ -303,7 +380,7 @@
   (function(){
     var p=document.getElementById('promo');
     if(!p) return;
-    var open=function(){ p.hidden=false; },
+    var open=function(){ if(window.__dwOpen&&window.__dwOpen()){ setTimeout(open,15000); return; } p.hidden=false; },
         close=function(){ p.hidden=true; };
     setTimeout(open, 10000);
     document.getElementById('promoClose').addEventListener('click', close);
